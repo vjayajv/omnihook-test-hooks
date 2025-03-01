@@ -18,7 +18,7 @@ hooks:
   - id: "secrets-check"
     name: "Secrets Detector"
     description: "Scans for hardcoded secrets before commits"
-    script_path: "trufflehog/trufflehog.sh"
+    scriptPath: "trufflehog/trufflehog.sh"
 
   - id: "dependency-check"
     name: "Dependency Security Scan"
