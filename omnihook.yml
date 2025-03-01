@@ -3,8 +3,8 @@ hooks:
     name: "Commit Message Format Check"
     description: "Ensures commit messages follow the conventional format"
     script: |
-      commit_msg_file=$1
-      commit_msg=$(cat $commit_msg_file)
+      #!/bin/sh
+      commit_msg="$1"
       if ! echo "$commit_msg" | grep -Eq '^(feat|fix|chore|docs|style|refactor|perf|test|build|ci|revert)(\(.+\))?: .+'; then
         echo "Invalid commit message: "
         echo "$commit_msg"
