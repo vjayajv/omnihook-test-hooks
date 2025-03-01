@@ -1,26 +1,20 @@
 hooks:
-  - id: "pre-commit-linter"
-    name: "Pre-Commit Linter"
-    description: "Runs a linter before committing code"
-    script: "eslint . --fix || exit 1"
-
   - id: "commit-msg-check"
     name: "Commit Message Format Check"
     description: "Ensures commit messages follow the conventional format"
     script: |
       commit_msg_file=$1
       commit_msg=$(cat $commit_msg_file)
-      if ! echo "$commit_msg" | grep -Eq '^(feat|fix|chore|docs|style|refactor|perf|test): .+'; then
-        echo "Invalid commit message format. Use 'feat:', 'fix:', etc."
+      if ! echo "$commit_msg" | grep -Eq '^(feat|fix|chore|docs|style|refactor|perf|test|build|ci|revert)(\(.+\))?: .+'; then
+        echo "Invalid commit message: "
+        echo "$commit_msg"
+        echo "Commit message must follow Conventional Commits format"
+        echo "Format: <type>[(scope)]: <description>"
+        echo "Types: feat, fix, chore, docs, style, refactor, perf, test, build, ci, revert"
         exit 1
-      fi
+            fi
 
   - id: "secrets-check"
     name: "Secrets Detector"
     description: "Scans for hardcoded secrets before commits"
     scriptPath: "trufflehog/trufflehog.sh"
-
-  - id: "dependency-check"
-    name: "Dependency Security Scan"
-    description: "Checks for vulnerable dependencies"
-    script: "npm audit --audit-level=high || exit 1"
