@@ -12,7 +12,8 @@ hooks:
         echo "Format: <type>[(scope)]: <description>"
         echo "Types: feat, fix, chore, docs, style, refactor, perf, test, build, ci, revert"
         exit 1
-            fi
+      fi
+    hookType: "commit-msg"
 
   - id: "secrets-check"
     name: "Secrets Detector"
