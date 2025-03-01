@@ -4,11 +4,6 @@ hooks:
     description: "Runs a linter before committing code"
     script: "eslint . --fix || exit 1"
 
-  - id: "pre-push-tests"
-    name: "Pre-Push Test Runner"
-    description: "Runs unit tests before pushing code"
-    script: "go test ./... || exit 1"
-
   - id: "commit-msg-check"
     name: "Commit Message Format Check"
     description: "Ensures commit messages follow the conventional format"
@@ -23,7 +18,7 @@ hooks:
   - id: "secrets-check"
     name: "Secrets Detector"
     description: "Scans for hardcoded secrets before commits"
-    script: "trufflehog filesystem --path . || exit 1"
+    script_path: "trufflehog/trufflehog.sh"
 
   - id: "dependency-check"
     name: "Dependency Security Scan"

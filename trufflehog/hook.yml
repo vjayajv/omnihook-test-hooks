@@ -1,0 +1,4 @@
+- id: "secrets-check"
+  name: "Secrets Detector"
+  description: "Scans for hardcoded secrets before commits"
+  script_path: "trufflehog/trufflehog.sh"
